@@ -51,6 +51,8 @@ bool BamRead::is_well_mapped(const int& minqual, const bool& rmdup) const {
 }
 
 void BamRead::extract_data(AlignData& data) const {
+    Rprintf("Read is %s\n", bam_get_qname(read));
+    Rprintf("CIGAR size is %i\n", (read->core).n_cigar);
     data.len=bam_cigar2rlen((read->core).n_cigar, bam_get_cigar(read));
     data.is_reverse=bam_is_rev(read);
     return;
